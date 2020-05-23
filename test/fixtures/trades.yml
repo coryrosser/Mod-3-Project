@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trader_id: 1
+  trader_item_id: 1
+  tradee_id: 1
+  tradee_item_id: 1
+  status: 1
+
+two:
+  trader_id: 1
+  trader_item_id: 1
+  tradee_id: 1
+  tradee_item_id: 1
+  status: 1
