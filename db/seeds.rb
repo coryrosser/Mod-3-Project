@@ -1,7 +1,80 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+Trade.destroy_all
+LineItem.destroy_all
+Profile.destroy_all
+Item.destroy_all
+User.destroy_all
+#User Create 
+
+10.times {
+    User.create(
+        first_name: Faker::Name.unique.first_name,
+        last_name: Faker::Name.unique.last_name,
+        email: Faker::Internet.email,
+        password: "test",
+        location: Faker::Address.state,
+    )
+}
+
+#item create 
+FENDER_MODELS = [
+    "Fender AG Series",
+    "Fender Avalon",
+    "Fender Balboa",
+    "Fender California Series",
+    "Fender Concert",
+    "Fender Concord",
+    "Fender Del Mar",
+    "Fender DG Series",
+    "Fender Ensanada Series",
+    "Fender F Series",
+    "Fender Folk",
+    "Fender Duo-Sonic",
+    "Fender Jaguar",
+    "Fender Jazzmaster",
+    "Fender Meteora",
+    "Fender Mustang",
+    "Fender Sixty-Six",
+    "Fender Stratocaster",
+    "Fender Telecaster",
+    "Fender Powercaster",
+]
+TAYLOR_MODELS = [
+    "412ce",
+    "412ce-R",
+    "414ce-R",
+    "414ce",
+    "914ce",
+    "GS Mini-e Koa",
+    "224ce-K DLX",
+    "K24ce",
+    "Big Baby Taylor",
+    "PS14ce Blackwood - Sinker Redwood",
+    "Builder's Edition K24ce",
+    "914ce",
+]
+FENDER_MODELS.map{|model| 
+    Item.create(
+        brand: "Fender", 
+        model: model, 
+        description: "placeholder",
+        condition: (1 + rand(5)),
+        retail_value: (1 + rand(5)),
+        finish: "placeholder",
+        trade_rating: 0 ,
+        user_id: User.all.sample.id,
+    )
+}
+
+TAYLOR_MODELS.map{|model| 
+    Item.create(
+        brand: "Taylor", 
+        model: model, 
+        description: "placeholder",
+        condition: (1 + rand(5)),
+        retail_value: (1 + rand(5)),
+        finish: "placeholder",
+        trade_rating: 0 ,
+        user_id: User.all.sample.id,
+    )
+}
