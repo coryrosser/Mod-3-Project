@@ -7,6 +7,7 @@ class TradesController < ApplicationController
     end
 
     def create 
+        #byebug uncomment when testing
         @trade = Trade.new(trade_params)
         if @trade.save 
             render json: @trade, status: :created
