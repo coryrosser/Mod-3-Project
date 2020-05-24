@@ -6,6 +6,9 @@ Item.destroy_all
 User.destroy_all
 #User Create 
 
+User.create(first_name: 'Joey', last_name: 'P', email: 'jp@jp.com', password: 'test', location: "Georgia")
+User.create(first_name: 'Cory', last_name: 'R', email: 'cr@cr.com', password: 'test', location: "Georgia")
+
 10.times {
     User.create(
         first_name: Faker::Name.unique.first_name,
@@ -80,3 +83,14 @@ TAYLOR_MODELS.map{|model|
 }
 
 Item.all.map{|item| item.update(trade_rating: item.calculate_trade_rating)}
+
+# Trade Create need to convert trader_id and trainee_id
+3.times {
+    Trade.create(
+        trader_id: User.first.id,
+        trader_item_id: User.first.items.all.sample.id,
+        tradee_id:  User.second.id,
+        tradee_item_id: User.second.items.all.sample.id,
+        status: Faker::Number.between(from: 0, to: 3)
+    )
+}
