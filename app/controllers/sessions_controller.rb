@@ -3,8 +3,12 @@ class SessionsController < ApplicationController
   end
 
   def create
+    session[:email] = params[:email]
+    # redirect_to root_url
   end
 
-  def login
+  def destroy
+    session.delete :username
   end
 end
+
