@@ -78,3 +78,5 @@ TAYLOR_MODELS.map{|model|
         user_id: User.all.sample.id,
     )
 }
+
+Item.all.map{|item| item.update(trade_rating: item.calculate_trade_rating)}
