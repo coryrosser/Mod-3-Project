@@ -1,4 +1,5 @@
 class LineItemsController < ApplicationController
+
   before_action :find_line_item, only: :update
   
   def create
@@ -23,5 +24,6 @@ class LineItemsController < ApplicationController
   def line_item_params
     params.require(:line_item).permit(:item_id, :user_id, :quantity)
   end
+
 
 end

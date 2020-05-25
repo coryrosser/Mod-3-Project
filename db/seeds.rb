@@ -85,12 +85,3 @@ TAYLOR_MODELS.map{|model|
 Item.all.map{|item| item.update(trade_rating: item.calculate_trade_rating)}
 
 # Trade Create need to convert trader_id and trainee_id
-3.times {
-    Trade.create(
-        trader_id: User.first.id,
-        trader_item_id: User.first.items.all.sample.id,
-        tradee_id:  User.second.id,
-        tradee_item_id: User.second.items.all.sample.id,
-        status: Faker::Number.between(from: 0, to: 3)
-    )
-}
