@@ -27,7 +27,7 @@ class UsersController < ApplicationController
         else
          render json: @user.errors, status: :error
         end
-       end
+    end
 
     def destroy
         user.destroy 
