@@ -6,4 +6,10 @@ class User < ApplicationRecord
 
     validates :email, presence: true, uniqueness: true 
     validates :location, :first_name, :last_name, presence: true
+
+    after_create :build_profile
+
+    def build_profile
+        Profile.create(user: self)
+    end
 end
