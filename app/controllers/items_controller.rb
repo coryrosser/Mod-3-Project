@@ -3,10 +3,11 @@ class ItemsController < ApplicationController
     def index 
         items = Item.all 
 
-        render :json => items
+        render :json => items, include: :user
     end
     def show 
-        render json: item
+        
+        render json: item, include: :user
     end
 
     def create 

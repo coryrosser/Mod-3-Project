@@ -7,13 +7,17 @@ class TradesController < ApplicationController
     end
 
     def create 
-        #byebug uncomment when testing
-        @trade = Trade.new(trade_params)
-        if @trade.save 
-            render json: @trade, status: :created
-
+        @trade = Trade.create!(trade_params)
+        @trade.update(status: 0) 
+        if @trade
+            @trade.save
+            @trader_item = Item.find_by(id: params[:trader_item_id])
+            @tradee_item = Item.find_by(id: params[:tradee_item_id])
+            @trader_item.update(user_id: params[:tradee_id])
+            @tradee_item.update(user_id: params[:trader_id])
+            render json: @trade
         else 
-            render json: @trade.errors, status: :error
+            render json: {status: "error"}
         end
 
     end
@@ -25,6 +29,6 @@ class TradesController < ApplicationController
     end
 
     def trade_params 
-        params.require(:trade).permit(:brand, :model, :description, :condition, :retail_value, :finish, :user_id)
+        params.require(:trade).permit(:trader_id, :trader_item_id, :tradee_id, :tradee_item_id)
     end
 end
