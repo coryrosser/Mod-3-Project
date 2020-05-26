@@ -5,10 +5,14 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email])
     if user && user.password = params[:session][:pw]
-      
       session[:user_id] = user.id
-      render json: current_user
       byebug
+      render json: {
+                    status: "success",
+                    code: 200,
+                    message: "Welcome #{current_user.first_name}!",
+                    user: current_user
+                  }
     else 
       render json: {status: "error", code: 300, message: "Invalid Email or Password"}
     end
