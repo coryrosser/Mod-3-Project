@@ -18,7 +18,8 @@ class SessionsController < ApplicationController
                     status: "success",
                     code: 200,
                     message: "Welcome #{current_user.first_name}!",
-                    user: current_user
+                    user: current_user,
+                    items: current_user.items
                   }
     else 
       render json: {status: "error", code: 300, message: "Invalid Email or Password"}
