@@ -23,10 +23,14 @@ class UsersController < ApplicationController
     end
     
     def update
-        if @user.update(user_params)
-         render json: @user
+        user = User.find_by(id: params[:id])
+        key = params[:key]
+        value = params[:newValue]
+        user.update(key => value)
+        if user.save
+         render json: {status: "Success", code: 200, user: user}
         else
-         render json: @user.errors, status: :error
+         render json: {status: "Error", code: 300, message: user.errors}
         end
     end
 
