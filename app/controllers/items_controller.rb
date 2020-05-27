@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
         render :json => items, include: :user
     end
     def show 
+        
         render json: item, include: :user
     end
 
