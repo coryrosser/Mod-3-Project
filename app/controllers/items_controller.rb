@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
     before_action :find_item, only: [:show, :update, :destroy]
+    
     def index 
         items = Item.all 
 
@@ -22,6 +23,7 @@ class ItemsController < ApplicationController
         end
 
     end
+    
     def update
         if @item.update(item_params)
          render json: @item
@@ -31,7 +33,9 @@ class ItemsController < ApplicationController
        end
 
     def destroy
-        item.destroy 
+        @item = Item.find_by(id: params[:id])
+        @item.destroy 
+        render json: {status: "Item Succefully Removed"}
     end
 
     private 
