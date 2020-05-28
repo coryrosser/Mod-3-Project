@@ -5,10 +5,9 @@ class TradesController < ApplicationController
         render :json => trades
     end
     def update
-        byebug
         trade = Trade.find_by(id: params[:id])
         trade.update(status: params[:status])
-        render json: {status: "Success", code: 200, message: "Trade Updated."}
+        render json: {status: "Success", code: 200, message: "Trade Updated.", trade: trade}
     end
 
     def create 
