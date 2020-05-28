@@ -1,9 +1,14 @@
 class TradesController < ApplicationController
     before_action :find_trade, only: [:show, :update, :destroy]
-    def index 
-        trades = Trade.all 
-
+    def index
+        trades = Trade.all
         render :json => trades
+    end
+    def update
+        byebug
+        trade = Trade.find_by(id: params[:id])
+        trade.update(status: params[:status])
+        render json: {status: "Success", code: 200, message: "Trade Updated."}
     end
 
     def create 
